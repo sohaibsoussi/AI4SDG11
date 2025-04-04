@@ -1,0 +1,86 @@
+[
+    {
+      "name": "Derb Sultan",
+      "coordinates": [33.5833, -7.5833],
+      "risk_level": "high",
+      "description": "Known for high petty crime rates, especially at night.",
+      "advice": "Avoid walking alone after sunset. Keep valuables hidden."
+    },
+    {
+      "name": "Hay Mohammadi",
+      "coordinates": [33.5892, -7.5603],
+      "risk_level": "medium",
+      "description": "Some streets experience occasional gang activity.",
+      "advice": "Stick to main roads and avoid isolated alleys."
+    },
+    {
+      "name": "Sidi Moumen",
+      "coordinates": [33.5746, -7.5072],
+      "risk_level": "medium",
+      "description": "Limited police presence. Can be rough after dark.",
+      "advice": "Travel in groups and stay alert."
+    },
+    {
+      "name": "Bourgogne-Ouest (some areas)",
+      "coordinates": [33.5950, -7.6414],
+      "risk_level": "low",
+      "description": "Tourist theft incidents reported in crowded cafes and clubs.",
+      "advice": "Watch belongings closely in busy areas."
+    },
+    {
+      "name": "Hay Hassani",
+      "coordinates": [33.5572, -7.6658],
+      "risk_level": "medium",
+      "description": "Scattered reports of pickpocketing and scams.",
+      "advice": "Be cautious with street vendors and keep phones secure."
+    },
+    {
+        "name": "Derb Kabir",
+        "coordinates": [33.5731, -7.5898],
+        "risk_level": "high",
+        "description": "Known for higher crime rates, particularly after dark.",
+        "advice": "Exercise caution, especially during nighttime hours."
+      },
+      {
+        "name": "Sbata",
+        "coordinates": [33.5580, -7.5899],
+        "risk_level": "medium",
+        "description": "Incidents of petty theft and occasional disturbances reported.",
+        "advice": "Remain vigilant and avoid displaying valuables openly."
+      },
+      {
+        "name": "Hay Moulay Rachid",
+        "coordinates": [33.5542, -7.5301],
+        "risk_level": "medium",
+        "description": "Some areas experience social challenges and elevated crime rates.",
+        "advice": "Stay alert and avoid unfamiliar areas, especially at night."
+      },
+      {
+        "name": "Hay Moulay Cherif",
+        "coordinates": [33.5585, -7.5960],
+        "risk_level": "medium",
+        "description": "Reports of petty crimes and occasional unrest.",
+        "advice": "Exercise caution and avoid isolated areas."
+      },
+      {
+        "name": "Old Medina",
+        "coordinates": [33.5992, -7.6136],
+        "risk_level": "medium",
+        "description": "While a popular tourist destination, some areas can be unsafe, especially at night.",
+        "advice": "Visit during daylight hours and stay within well-trafficked areas."
+      },
+      {
+        "name": "Oulfa",
+        "coordinates": [33.5528, -7.6731],
+        "risk_level": "medium",
+        "description": "Some areas have reported incidents of petty crime.",
+        "advice": "Be cautious and avoid less crowded streets, especially after dark."
+      },
+      {
+        "name": "Ben M'Sick",
+        "coordinates": [33.5586, -7.5900],
+        "risk_level": "medium",
+        "description": "Known for occasional disturbances and higher petty crime rates.",
+        "advice": "Stay alert and avoid displaying valuables."
+      }
+  ]

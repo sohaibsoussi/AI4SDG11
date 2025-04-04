@@ -1,0 +1,23 @@
+[
+    {
+      "id": "hassan-ii-mosque",
+      "name": "Hassan II Mosque",
+      "description": "The Hassan II Mosque is the largest mosque in Africa and the 7th largest in the world.",
+      "lat": 33.6076,
+      "lon": -7.6325
+    },
+    {
+      "id": "place-mohammed-v",
+      "name": "Place Mohammed V",
+      "description": "A central plaza surrounded by impressive French colonial buildings.",
+      "lat": 33.5906,
+      "lon": -7.6208
+    },
+    {
+      "id": "villa-des-arts",
+      "name": "Villa des Arts",
+      "description": "An art museum showcasing contemporary Moroccan creativity.",
+      "lat": 33.5867,
+      "lon": -7.6242
+    }
+  ]
