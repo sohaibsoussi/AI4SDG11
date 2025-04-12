@@ -1,7 +1,11 @@
 import { notFound } from 'next/navigation';
 import monumentData from '../../../public/data/monuments.json';
 
-export default function MonumentPage({ params }: { params: { id: string } }) {
+interface MonumentPageProps {
+  params: { id: string };
+}
+
+export default async function MonumentPage({ params }: MonumentPageProps) {
   const monument = monumentData.find((m) => m.id === params.id);
   if (!monument) return notFound();
 
