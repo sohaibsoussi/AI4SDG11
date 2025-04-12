@@ -18,3 +18,4 @@ export default async function MonumentPage({ params }: MonumentPageProps) {
       <p className="mt-2 text-lg">{monument.description}</p>
     </div>
   );
+}
