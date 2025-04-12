@@ -3,7 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-type ChatMessage = { role: "user" | "assistant", content: string };
+type ChatMessage = { role: "user" | "assistant"; content: string };
 
 export default function LLMChat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -12,19 +12,21 @@ export default function LLMChat() {
   const handleSend = async () => {
     if (!input.trim()) return;
 
-    // Append the user's message locally
-    const newMessages = [...messages, { role: "user", content: input }];
+    // Append the user's message locally with explicit type annotation
+    const userMessage: ChatMessage = { role: "user", content: input };
+    const newMessages: ChatMessage[] = [...messages, userMessage];
     setMessages(newMessages);
 
     try {
       // Call your n8n endpoint to get a response.
-      // Adjust the URL to match your n8n endpoint.
       const { data } = await axios.post("/api/n8n/chat", { message: input });
-      // Append the response from n8n.
-      setMessages([...newMessages, { role: "assistant", content: data.response }]);
+      // Append the response from n8n with explicit type annotation
+      const assistantMessage: ChatMessage = { role: "assistant", content: data.response };
+      setMessages([...newMessages, assistantMessage]);
     } catch (error) {
       console.error(error);
-      setMessages([...newMessages, { role: "assistant", content: "Error: Unable to fetch response" }]);
+      const errorMessage: ChatMessage = { role: "assistant", content: "Error: Unable to fetch response" };
+      setMessages([...newMessages, errorMessage]);
     }
     setInput("");
   };
@@ -34,7 +36,12 @@ export default function LLMChat() {
       <h2 className="text-xl text-black font-semibold mb-3">Assistant</h2>
       <div className="flex-1 overflow-y-auto space-y-2 mb-4">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`p-2 rounded-md ${msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"}`}>
+          <div 
+            key={idx} 
+            className={`p-2 rounded-md ${
+              msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"
+            }`}
+          >
             {msg.content}
           </div>
         ))}
