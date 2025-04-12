@@ -1,6 +1,4 @@
 'use client';
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-
 
 import { MapContainer, TileLayer, Marker, Popup, Circle, Polyline, Icon} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -32,6 +30,7 @@ export default function Map({ route, userLocation }: Props) {
   const [zones, setZones] = useState<
     { zone: Zone; coords: [number, number] }[]
   >([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [monuments, setMonuments] = useState<any[]>([]);
 
   const getColor = (level: string) => {

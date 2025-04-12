@@ -8,7 +8,6 @@ import { searchLocation } from "@/utils/geocode";
 import { fetchWeather } from "@/utils/weather";
 import axios from "axios";
 import LLMChat from "@/components/LLMChat";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 const Map = dynamic(()=> import('@/components/Map'), { ssr: false });
 
@@ -17,6 +16,7 @@ export default function Home() {
   const [destination, setDestination] = useState("");
   const [route, setRoute] = useState<[number, number][] | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [weather, setWeather] = useState<any | null>(null);
 
   const handleSearch = async () => {
