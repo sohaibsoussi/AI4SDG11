@@ -8,6 +8,7 @@ import { searchLocation } from "@/utils/geocode";
 import { fetchWeather } from "@/utils/weather";
 import axios from "axios";
 import LLMChat from "@/components/LLMChat";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 const Map = dynamic(()=> import('@/components/Map'), { ssr: false });
 

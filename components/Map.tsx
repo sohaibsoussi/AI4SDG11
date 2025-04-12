@@ -1,4 +1,6 @@
 'use client';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 
 import { MapContainer, TileLayer, Marker, Popup, Circle, Polyline, Icon} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
