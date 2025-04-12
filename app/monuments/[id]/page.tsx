@@ -6,7 +6,10 @@ interface MonumentPageProps {
 }
 
 export default async function MonumentPage({ params }: MonumentPageProps) {
-  const monument = monumentData.find((m) => m.id === params.id);
+  // Wrap params in a Promise so that it satisfies the expected type.
+  const { id } = await Promise.resolve(params);
+  
+  const monument = monumentData.find((m) => m.id === id);
   if (!monument) return notFound();
 
   return (
@@ -15,4 +18,3 @@ export default async function MonumentPage({ params }: MonumentPageProps) {
       <p className="mt-2 text-lg">{monument.description}</p>
     </div>
   );
-}
