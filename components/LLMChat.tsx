@@ -3,44 +3,46 @@
 import { useState } from "react";
 import axios from "axios";
 
-type ChatMessage = { role: "user" | "assistant"; content: string };
+export type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
-export default function LLMChat() {
+type LLMChatProps = {
+  // Dynamic context info (e.g., route details, weather etc.) to be merged with static transportation context
+  context?: string;
+};
+
+export default function LLMChat({ context }: LLMChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
 
   const handleSend = async () => {
     if (!input.trim()) return;
-
-    // Append the user's message locally with explicit type annotation
-    const userMessage: ChatMessage = { role: "user", content: input };
-    const newMessages: ChatMessage[] = [...messages, userMessage];
+    
+    // Append user message to conversation history
+    const newMessages = [...messages, { role: "user", content: input }];
     setMessages(newMessages);
 
     try {
-      // Call your n8n endpoint to get a response.
-      const { data } = await axios.post("/api/n8n/chat", { message: input });
-      // Append the response from n8n with explicit type annotation
-      const assistantMessage: ChatMessage = { role: "assistant", content: data.response };
-      setMessages([...newMessages, assistantMessage]);
+      // Call your Groq API endpoint with messages and dynamic context
+      const { data } = await axios.post("/api/groq/chat", {
+        messages: newMessages,
+        context: context || "",
+      });
+      setMessages([...newMessages, { role: "assistant", content: data.response }]);
     } catch (error) {
-      console.error(error);
-      const errorMessage: ChatMessage = { role: "assistant", content: "Error: Unable to fetch response" };
-      setMessages([...newMessages, errorMessage]);
+      console.error("LLM Chat error:", error);
+      setMessages([...newMessages, { role: "assistant", content: "Error: Unable to fetch response." }]);
     }
     setInput("");
   };
 
   return (
     <div className="flex flex-col h-full border border-gray-300 rounded-lg p-4 bg-white shadow">
-      <h2 className="text-xl text-black font-semibold mb-3">Assistant</h2>
+      <h2 className="text-xl font-semibold mb-3">Chat with Groq</h2>
       <div className="flex-1 overflow-y-auto space-y-2 mb-4">
         {messages.map((msg, idx) => (
-          <div 
-            key={idx} 
-            className={`p-2 rounded-md ${
-              msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"
-            }`}
+          <div
+            key={idx}
+            className={`p-2 rounded-md ${msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"}`}
           >
             {msg.content}
           </div>
@@ -50,7 +52,7 @@ export default function LLMChat() {
         <input
           type="text"
           className="flex-1 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none"
-          placeholder="Ask something..."
+          placeholder="Ask your question..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") handleSend(); }}
