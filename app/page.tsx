@@ -15,6 +15,7 @@ export default function Home() {
   const [destination, setDestination] = useState("");
   const [route, setRoute] = useState<[number, number][] | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   const [weather, setWeather] = useState<any | null>(null);
 
   const handleSearch = async () => {
