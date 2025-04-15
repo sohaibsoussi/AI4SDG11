@@ -75,7 +75,7 @@ User Location: ${
                 placeholder="Search destination (e.g. Morocco Mall)"
                 value={destination}
                 onChange={(e) => setDestination(e.target.value)}
-                className="border border-gray-300 px-3 py-2 mr-2 rounded-md focus:outline-none"
+                className="border border-gray-300 px-3 py-2 mr-2 rounded-md focus:outline-none text-white"
               />
               <button onClick={handleSearch} className="flex items-center gap-2 bg-blue-600 border-2 border-blue-600 text-white px-4 py-2 rounded-md">
                 Calculate Route

@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { OrbitControls, Html } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useRef, useEffect, useState } from "react";
 
 function Model({ audioStarted, audioPaused, audioDuration, position = [0, 0, 0], rotation = [0, 0, 0] }) {
@@ -12,9 +12,10 @@ function Model({ audioStarted, audioPaused, audioDuration, position = [0, 0, 0],
   const startTime = useRef(null);
   const pauseTime = useRef(0);
 
-  const meshes = Object.values(nodes).filter(node => node.isMesh);
+  const meshes = Object.values(nodes).filter((node) => node.isMesh);
   const blendshapeMesh = meshes.find(
-    (mesh) => mesh.morphTargetDictionary && mesh.morphTargetDictionary["mouthOpen"] !== undefined
+    (mesh) =>
+      mesh.morphTargetDictionary && mesh.morphTargetDictionary["mouthOpen"] !== undefined
   );
  
   useEffect(() => {
@@ -27,7 +28,6 @@ function Model({ audioStarted, audioPaused, audioDuration, position = [0, 0, 0],
     if (blendshapeMeshRef.current && audioStarted && audioDuration > 0) {
       if (audioPaused) {
         pauseTime.current = clock.getElapsedTime() - startTime.current;
-
         return;
       }
       
@@ -62,7 +62,6 @@ export default function Scene() {
   useEffect(() => {
     const audio = audioRef.current;
     audio.loop = false;
-
     audio.onloadedmetadata = () => {
       setAudioDuration(audio.duration);
     };
@@ -94,41 +93,31 @@ export default function Scene() {
   };
 
   return (
-    <div style={{ width: "100vw", height: "100vh", background: "#222", position: "relative" }}>
+    <div className="relative w-full h-full">
       <Canvas camera={{ position: [2, 1, 2], fov: 50 }}>
         <ambientLight intensity={1} />
         <spotLight position={[10, 10, 10]} intensity={1.2} />
         <directionalLight position={[-5, 5, 5]} intensity={0.8} />
         
-        <Model position={[.4, -1, 1.5]} rotation={[0, Math.PI / 4, 0]} audioStarted={audioStarted} audioPaused={audioPaused} audioDuration={audioDuration} />
+        <Model
+          position={[0.4, -1, 1.5]}
+          rotation={[0, Math.PI / 4, 0]}
+          audioStarted={audioStarted}
+          audioPaused={audioPaused}
+          audioDuration={audioDuration}
+        />
 
-        <OrbitControls enableZoom={true} enablePan={true} />
-
-        {/* Button in 3D space, always in front of the camera */}
-        <Html position={[-3, -2, -1]} center>
-          <button
-            onClick={toggleAudio}
-            style={{
-              padding: "12px 30px",
-              fontSize: "18px",
-              fontWeight: "bold",
-              color: "#fff",
-              background: "linear-gradient(145deg, #6a0dad, rgb(13, 218, 105))",
-              border: "2px solid white",
-              borderRadius: "50px",
-              cursor: "pointer",
-              boxShadow: `
-                0 4px 8px rgba(0, 0, 0, 0.3),
-                inset 0 2px 4px rgba(255, 255, 255, 0.2),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.2)
-              `,
-              transition: "all 0.3s ease",
-            }}
-          >
-            {audioPaused || !audioStarted ? "▶ Play" : "⏸ Pause"}
-          </button>
-        </Html>
+        <OrbitControls enableZoom enablePan />
       </Canvas>
+      {/* Audio control fixed overlay */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <button
+          onClick={toggleAudio}
+          className="px-6 py-3 text-lg font-bold text-white bg-gradient-to-r from-purple-700 to-green-500 border border-white rounded-full shadow-lg hover:from-purple-600 hover:to-green-600 transition-all duration-300"
+        >
+          {audioPaused || !audioStarted ? "▶ Play" : "⏸ Pause"}
+        </button>
+      </div>
     </div>
   );
 }
