@@ -18,7 +18,10 @@ export default function LLMChat({ context }: LLMChatProps) {
     if (!input.trim()) return;
     
     // Append user message to conversation history
-    const newMessages = [...messages, { role: "user", content: input }];
+    const newMessages: ChatMessage[] = [
+      ...messages,
+      { role: "user", content: input } as ChatMessage
+    ];
     setMessages(newMessages);
 
     try {
