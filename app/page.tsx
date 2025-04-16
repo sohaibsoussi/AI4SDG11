@@ -83,7 +83,7 @@ User Location: ${
             </div>
           </div>
           {distance && (
-            <p className="mt-2">
+            <p className="mt-2 text-white">
               <span className="font-semibold">Distance:</span> {distance.toFixed(2)} km
               {weather && (
                 <span className="ml-4">

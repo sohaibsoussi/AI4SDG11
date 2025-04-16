@@ -40,7 +40,7 @@ export default function LLMChat({ context }: LLMChatProps) {
 
   return (
     <div className="flex flex-col h-full border border-gray-300 rounded-lg p-4 bg-white shadow">
-      <h2 className="text-xl font-semibold mb-3">Chat with Groq</h2>
+      <h2 className="text-xl font-semibold mb-3">Chat with SLTVerse Assistant</h2>
       <div className="flex-1 overflow-y-auto space-y-2 mb-4">
         {messages.map((msg, idx) => (
           <div
