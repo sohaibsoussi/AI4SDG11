@@ -4,11 +4,11 @@ import Scene from "../../../components/Scene";
 import Link from "next/link";
 
 interface MonumentPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function MonumentPage({ params }: MonumentPageProps) {
-  const { id } = params;
+export default async function MonumentPage({ params }: MonumentPageProps) {
+  const { id } = await params;
   const monument = monumentData.find((m) => m.id === id);
   if (!monument) return notFound();
 
@@ -32,7 +32,10 @@ export default function MonumentPage({ params }: MonumentPageProps) {
         {/* Footer with navigation */}
         <footer className="bg-gray-800 py-4">
           <div className="container mx-auto text-center">
-            <Link href="/" className="text-blue-400 hover:text-blue-600 transition-colors text-lg">
+            <Link
+              href="/"
+              className="text-blue-400 hover:text-blue-600 transition-colors text-lg"
+            >
               ← Back to Home
             </Link>
           </div>
