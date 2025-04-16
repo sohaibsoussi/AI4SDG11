@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import monumentData from "../../../public/data/monuments.json";
 import Scene from "../../../components/Scene";
+import Link from "next/link";
 
 interface MonumentPageProps {
   params: { id: string };
@@ -31,9 +32,9 @@ export default function MonumentPage({ params }: MonumentPageProps) {
         {/* Footer with navigation */}
         <footer className="bg-gray-800 py-4">
           <div className="container mx-auto text-center">
-            <a href="/" className="text-blue-400 hover:text-blue-600 transition-colors text-lg">
+            <Link href="/" className="text-blue-400 hover:text-blue-600 transition-colors text-lg">
               ← Back to Home
-            </a>
+            </Link>
           </div>
         </footer>
       </main>
