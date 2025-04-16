@@ -3,7 +3,6 @@
 import { useState } from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 
 export type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
