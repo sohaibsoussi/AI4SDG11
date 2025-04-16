@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import axios from "axios";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
 
@@ -45,9 +47,17 @@ export default function LLMChat({ context }: LLMChatProps) {
         {messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`p-2 rounded-md ${msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"}`}
+            className={`p-2 rounded-md ${
+              msg.role === "user" ? "bg-blue-50 text-right" : "bg-gray-100 text-left"
+            }`}
           >
-            {msg.content}
+            {msg.role === "assistant" ? (
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {msg.content}
+              </ReactMarkdown>
+            ) : (
+              msg.content
+            )}
           </div>
         ))}
       </div>
