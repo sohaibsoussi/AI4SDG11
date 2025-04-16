@@ -70,8 +70,8 @@ export default function LLMChat({ context }: LLMChatProps) {
           className="flex-1 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none"
           placeholder="Ask your question..."
           value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value)}
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
             if (e.key === "Enter") handleSend();
           }}
         />
